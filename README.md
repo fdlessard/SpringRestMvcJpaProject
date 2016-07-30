@@ -19,6 +19,8 @@ mvn clean install jetty:run
 Tomcat vm args (for instrumentation)
 ====================================
 
+You need to put this in the vmargs for the webserver
+
 -javaagent:/.../.../.m2/repository/org/springframework/spring-instrument/4.3.1.RELEASE/spring-instrument-4.3.1.RELEASE.jar -noverify
 
 
@@ -26,3 +28,6 @@ Url of the Application:
 ===
 
 http://localhost:8080/RestSpringMvcJpaApp/hello
+
+http://localhost:8080/RestSpringMvcJpaApp/salesoders
+
