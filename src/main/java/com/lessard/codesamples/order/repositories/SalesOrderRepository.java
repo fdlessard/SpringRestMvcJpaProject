@@ -1,7 +1,7 @@
 package com.lessard.codesamples.order.repositories;
 
 
-import com.lessard.codesamples.order.model.SalesOrder;
+import com.lessard.codesamples.order.domain.SalesOrder;
 
 public interface SalesOrderRepository {
 

@@ -1,6 +1,6 @@
 package com.lessard.codesamples.order.repositories;
 
-import com.lessard.codesamples.order.model.SalesOrder;
+import com.lessard.codesamples.order.domain.SalesOrder;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;

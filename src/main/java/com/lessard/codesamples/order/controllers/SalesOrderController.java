@@ -2,8 +2,7 @@ package com.lessard.codesamples.order.controllers;
 
 import java.lang.Iterable;
 
-import com.lessard.codesamples.order.model.SalesOrder;
-import com.lessard.codesamples.order.repositories.SalesOrderRepository;
+import com.lessard.codesamples.order.domain.SalesOrder;
 import com.lessard.codesamples.order.services.SalesOrderService;
 import org.eclipse.persistence.internal.security.SecurableObjectHolder;
 import org.springframework.beans.factory.annotation.Autowired;

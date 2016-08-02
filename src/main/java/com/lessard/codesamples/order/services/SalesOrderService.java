@@ -1,6 +1,6 @@
 package com.lessard.codesamples.order.services;
 
-import com.lessard.codesamples.order.model.SalesOrder;
+import com.lessard.codesamples.order.domain.SalesOrder;
 import com.lessard.codesamples.order.repositories.SalesOrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -23,11 +23,9 @@ public class SalesOrderService {
         this.salesOrderRepository = salesOrderRepository;
     }
 
-
     public void createSalesOrder(SalesOrder salesOrder) {
 
         salesOrderRepository.save(salesOrder);
-
     }
 
     public SalesOrder getSalesOrder(Integer id) {

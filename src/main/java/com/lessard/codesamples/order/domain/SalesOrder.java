@@ -1,4 +1,7 @@
-package com.lessard.codesamples.order.model;
+package com.lessard.codesamples.order.domain;
+
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -9,17 +12,19 @@ import java.util.Date;
 @Table(name = "sales_order")
 public class SalesOrder implements Serializable {
 
-    @Id @GeneratedValue
-    @Column(name="id")
-	private Integer id;
+    @Id
+    @GeneratedValue
+    @Column(name = "id")
+    private Integer id;
 
-    @Column(name="description")
-	private String description;
+    @Column(name = "description")
+    private String description;
 
-    @Column(name="date")
-	private Date date;
+    @Column(name = "date")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy hh:mm:ss")
+    private Date date;
 
-    @Column(name="amount")
+    @Column(name = "amount")
     private BigDecimal total;
 
 
