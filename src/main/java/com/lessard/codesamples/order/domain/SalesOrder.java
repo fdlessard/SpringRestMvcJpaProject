@@ -15,7 +15,11 @@ public class SalesOrder implements Serializable {
     @Id
     @GeneratedValue
     @Column(name = "id")
-    private Integer id;
+    private Long id;
+
+    @Version
+    @Column(name = "version")
+    private Long version;
 
     @Column(name = "description")
     private String description;
@@ -31,19 +35,28 @@ public class SalesOrder implements Serializable {
     public SalesOrder() {
     }
 
-    public SalesOrder(Integer id, String description, Date date, BigDecimal total) {
+    public SalesOrder(Long id, Long version, String description, Date date, BigDecimal total) {
         this.id = id;
+        this.version = version;
         this.description = description;
         this.date = date;
         this.total = total;
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
+    }
+
+    public Long getVersion() {
+        return version;
+    }
+
+    public void setVersion(Long version) {
+        this.version = version;
     }
 
     public String getDescription() {
@@ -62,7 +75,6 @@ public class SalesOrder implements Serializable {
         this.date = date;
     }
 
-
     public BigDecimal getTotal() {
         return total;
     }
@@ -75,6 +87,7 @@ public class SalesOrder implements Serializable {
     public String toString() {
         return "SalesOrder{" +
                 "id=" + id +
+                ", version=" + version +
                 ", description='" + description + '\'' +
                 ", date=" + date +
                 ", total=" + total +
@@ -89,6 +102,7 @@ public class SalesOrder implements Serializable {
         SalesOrder that = (SalesOrder) o;
 
         if (id != null ? !id.equals(that.id) : that.id != null) return false;
+        if (version != null ? !version.equals(that.version) : that.version != null) return false;
         if (description != null ? !description.equals(that.description) : that.description != null) return false;
         if (date != null ? !date.equals(that.date) : that.date != null) return false;
         return total != null ? total.equals(that.total) : that.total == null;
@@ -98,6 +112,7 @@ public class SalesOrder implements Serializable {
     @Override
     public int hashCode() {
         int result = id != null ? id.hashCode() : 0;
+        result = 31 * result + (version != null ? version.hashCode() : 0);
         result = 31 * result + (description != null ? description.hashCode() : 0);
         result = 31 * result + (date != null ? date.hashCode() : 0);
         result = 31 * result + (total != null ? total.hashCode() : 0);

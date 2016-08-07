@@ -1,6 +1,9 @@
 package com.lessard.codesamples.order.controllers;
 
 import java.lang.Iterable;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 import com.lessard.codesamples.order.domain.SalesOrder;
 import com.lessard.codesamples.order.services.SalesOrderService;
@@ -53,9 +56,13 @@ public class SalesOrderController {
 
 
     @RequestMapping(value = "/salesorders/{id}", method = RequestMethod.GET, produces = "application/json")
-    public ResponseEntity<SalesOrder> get(@PathVariable Integer id) {
+    public ResponseEntity<SalesOrder> get(@PathVariable Long id) {
+
+        System.out.println("SalesOrderController.get " + id);
 
         SalesOrder salesOrder = salesOrderService.getSalesOrder(id);
+
+        System.out.println("SalesOrderController.get = > " + salesOrder);
 
         return new ResponseEntity<SalesOrder>(salesOrder, HttpStatus.OK);
     }
@@ -63,13 +70,25 @@ public class SalesOrderController {
     @RequestMapping(value = "/salesorders", method = RequestMethod.GET, produces = "application/json")
     public ResponseEntity<Iterable<SalesOrder>> getAll() {
 
+        System.out.println("SalesOrderController.getAll ");
+
         Iterable<SalesOrder> salesOrders = salesOrderService.getAllSalesOrder();
+
+        Iterator<SalesOrder> iterator = salesOrders.iterator();
+
+        List<SalesOrder> list = new ArrayList<SalesOrder>();
+        iterator.forEachRemaining(list::add);
+        System.out.println("SalesOrderController.getAll list size: " + list.size());
+        for (SalesOrder salesOrder: list) {
+            System.out.println("SalesOrderController.getAll " + salesOrder);
+
+        }
 
         return new ResponseEntity<Iterable<SalesOrder>>(salesOrders, HttpStatus.OK);
     }
 
     @RequestMapping(value = "/salesorders/{id}", method = RequestMethod.DELETE, produces = "application/json")
-    public ResponseEntity<String> delete(@PathVariable Integer id) {
+    public ResponseEntity<String> delete(@PathVariable Long id) {
 
         salesOrderService.delete(id);
 

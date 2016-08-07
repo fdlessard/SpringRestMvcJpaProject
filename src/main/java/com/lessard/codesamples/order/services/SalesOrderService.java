@@ -28,12 +28,16 @@ public class SalesOrderService {
         salesOrderRepository.save(salesOrder);
     }
 
-    public SalesOrder getSalesOrder(Integer id) {
+    public SalesOrder getSalesOrder(Long id) {
+
+        System.out.println("SalesOrderService.getSalesOrder " + id );
         SalesOrder salesOrder = salesOrderRepository.findByPrimaryKey(id);
         return salesOrder;
     }
 
     public Iterable<SalesOrder> getAllSalesOrder() {
+
+        System.out.println("SalesOrderService.getAllSalesOrder ");
 
         Iterable<SalesOrder> salesOrders = salesOrderRepository.findAll();
 
@@ -41,7 +45,7 @@ public class SalesOrderService {
     }
 
 
-    public void delete(Integer id) {
+    public void delete(Long id) {
 
         salesOrderRepository.delete(id);
 

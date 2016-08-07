@@ -18,13 +18,17 @@ public class SalesOrderRepositoryJpaImpl implements SalesOrderRepository {
     private EntityManager entityManager;
 
     @Override
-    public SalesOrder findByPrimaryKey(Integer id) {
+    public SalesOrder findByPrimaryKey(Long id) {
+
+        System.out.println("SalesOrderRepositoryJpaImpl.findByPrimaryKey " + id);
 
         return entityManager.find(SalesOrder.class, id);
     }
 
     @Override
     public List<SalesOrder> findAll() {
+
+        System.out.println("SalesOrderRepositoryJpaImpl.findAll ");
 
         String s = "SELECT o FROM SalesOrder o";
 
@@ -41,7 +45,7 @@ public class SalesOrderRepositoryJpaImpl implements SalesOrderRepository {
     }
 
     @Override
-    public void delete(Integer id) {
+    public void delete(Long id) {
 
         SalesOrder salesOrder = entityManager.find(SalesOrder.class, id);
         if (salesOrder != null) {

@@ -39,14 +39,14 @@ public class SalesOrderServiceTest {
 
         salesOrderService = new SalesOrderService(salesOrderRepository);
 
-        Mockito.when(salesOrderRepository.findByPrimaryKey(0)).
-                thenReturn(new SalesOrder(0, "SalesOrder 0", today, new BigDecimal(10.00)));
+        Mockito.when(salesOrderRepository.findByPrimaryKey(0l)).
+                thenReturn(new SalesOrder(0l, 0l, "SalesOrder 0", today, new BigDecimal(10.00)));
 
         List<SalesOrder> salesOrderList = new ArrayList<SalesOrder>();
 
-        salesOrderList.add(new SalesOrder(0, "SalesOrder 0", today, new BigDecimal(10.00)));
-        salesOrderList.add(new SalesOrder(1, "SalesOrder 1", today, new BigDecimal(10.00)));
-        salesOrderList.add(new SalesOrder(2, "SalesOrder 2", today, new BigDecimal(10.00)));
+        salesOrderList.add(new SalesOrder(0l, 0l, "SalesOrder 0", today, new BigDecimal(10.00)));
+        salesOrderList.add(new SalesOrder(1l, 0l, "SalesOrder 1", today, new BigDecimal(10.00)));
+        salesOrderList.add(new SalesOrder(2l, 0l, "SalesOrder 2", today, new BigDecimal(10.00)));
 
         Mockito.when(salesOrderRepository.findAll()).thenReturn(salesOrderList);
 
@@ -55,9 +55,9 @@ public class SalesOrderServiceTest {
     @Test
     public void testGetSalesOrder() throws Exception {
 
-        SalesOrder salesOrder = salesOrderService.getSalesOrder(0);
+        SalesOrder salesOrder = salesOrderService.getSalesOrder(0l);
         Assert.assertNotNull(salesOrder);
-        Assert.assertEquals(salesOrder.getId(), new Integer(0));
+        Assert.assertEquals(salesOrder.getId(), new Long(0));
         Assert.assertEquals(salesOrder.getDescription(), "SalesOrder 0");
         Assert.assertEquals(salesOrder.getDate(), today);
         Assert.assertEquals(salesOrder.getTotal(), new BigDecimal(10.00));
@@ -77,23 +77,21 @@ public class SalesOrderServiceTest {
     @Test
     public void testDeleteSalesOrder() throws Exception {
 
-        salesOrderService.delete(new Integer(0));
-        verify(salesOrderRepository).delete(new Integer(0));
+        salesOrderService.delete(new Long(0));
+        verify(salesOrderRepository).delete(new Long(0));
     }
 
     @Test
     public void testCreateSalesOrder() throws Exception {
 
-        salesOrderService.createSalesOrder( new SalesOrder(3, "SalesOrder 3", today, new BigDecimal(10.00)));
-        verify(salesOrderRepository).save(new SalesOrder(3, "SalesOrder 3", today, new BigDecimal(10.00)));
+        salesOrderService.createSalesOrder( new SalesOrder( 3l, 0l, "SalesOrder 3", today, new BigDecimal(10.00)));
+        verify(salesOrderRepository).save(new SalesOrder(3l, 0l, "SalesOrder 3", today, new BigDecimal(10.00)));
     }
 
     @Test
     public void testUpdateSalesOrder() throws Exception {
 
-        salesOrderService.updateSalesOrder( new SalesOrder(3, "SalesOrder 3", today, new BigDecimal(10.00)));
-        verify(salesOrderRepository).update( new SalesOrder(3, "SalesOrder 3", today, new BigDecimal(10.00)));
+        salesOrderService.updateSalesOrder( new SalesOrder(3l, 0l, "SalesOrder 3", today, new BigDecimal(10.00)));
+        verify(salesOrderRepository).update( new SalesOrder(3l, 0l, "SalesOrder 3", today, new BigDecimal(10.00)));
     }
-
-
 }

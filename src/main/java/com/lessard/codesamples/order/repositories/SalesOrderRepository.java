@@ -5,13 +5,13 @@ import com.lessard.codesamples.order.domain.SalesOrder;
 
 public interface SalesOrderRepository {
 
-	SalesOrder findByPrimaryKey(Integer id);
+	SalesOrder findByPrimaryKey(Long id);
 
 	Iterable<SalesOrder> findAll();
 
 	void save(SalesOrder salesOrder);
 
-	void delete(Integer id);
+	void delete(Long id);
 
 	void update(SalesOrder salesOrder);
 	
