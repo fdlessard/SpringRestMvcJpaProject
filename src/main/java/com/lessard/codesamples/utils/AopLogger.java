@@ -1,8 +1,8 @@
 package com.lessard.codesamples.utils;
 
-
 import org.apache.commons.lang3.StringUtils;
-import org.apache.log4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.slf4j.Logger;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
@@ -17,6 +17,8 @@ import org.springframework.util.StopWatch;
 @Component
 @Aspect
 public class AopLogger {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(AopLogger.class);
 
     @Around("execution(* com.lessard.codesamples..*.*(..))")
     public Object timeMethod(ProceedingJoinPoint joinPoint) throws Throwable {
@@ -41,11 +43,11 @@ public class AopLogger {
         logMessageStringBuffer.append(argListStr);
         logMessageStringBuffer.append(") - ");
 
-        logMessageStringBuffer.append(" Execution time: ");
+        logMessageStringBuffer.append("Execution time: ");
         logMessageStringBuffer.append(stopWatch.getTotalTimeMillis());
         logMessageStringBuffer.append(" ms");
 
-        Logger.getLogger(this.getClass()).info(logMessageStringBuffer.toString());
+        LOGGER.info(logMessageStringBuffer.toString());
 
         return retVal;
     }

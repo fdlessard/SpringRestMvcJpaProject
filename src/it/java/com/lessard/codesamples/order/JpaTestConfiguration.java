@@ -58,8 +58,6 @@ public class JpaTestConfiguration extends WebMvcConfigurerAdapter {
         jpaProperties.put("eclipselink.target-database", "org.eclipse.persistence.platform.database.H2Platform");
         jpaProperties.put("eclipselink.weaving", "false");
         jpaProperties.put("eclipselink.ddl-generation", "drop-and-create-tables");
-        jpaProperties.put("eclipselink.ddl-generation.output-mode", "both");
-
 
         EclipseLinkJpaVendorAdapter jpaVendorAdapter = new EclipseLinkJpaVendorAdapter();
         jpaVendorAdapter.setShowSql(true);
