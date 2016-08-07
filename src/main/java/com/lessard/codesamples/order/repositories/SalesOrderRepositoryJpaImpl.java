@@ -20,15 +20,11 @@ public class SalesOrderRepositoryJpaImpl implements SalesOrderRepository {
     @Override
     public SalesOrder findByPrimaryKey(Long id) {
 
-        System.out.println("SalesOrderRepositoryJpaImpl.findByPrimaryKey " + id);
-
         return entityManager.find(SalesOrder.class, id);
     }
 
     @Override
     public List<SalesOrder> findAll() {
-
-        System.out.println("SalesOrderRepositoryJpaImpl.findAll ");
 
         String s = "SELECT o FROM SalesOrder o";
 

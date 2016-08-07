@@ -30,14 +30,12 @@ public class SalesOrderService {
 
     public SalesOrder getSalesOrder(Long id) {
 
-        System.out.println("SalesOrderService.getSalesOrder " + id );
         SalesOrder salesOrder = salesOrderRepository.findByPrimaryKey(id);
+
         return salesOrder;
     }
 
     public Iterable<SalesOrder> getAllSalesOrder() {
-
-        System.out.println("SalesOrderService.getAllSalesOrder ");
 
         Iterable<SalesOrder> salesOrders = salesOrderRepository.findAll();
 
