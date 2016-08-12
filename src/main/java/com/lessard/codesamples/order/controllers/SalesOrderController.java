@@ -6,7 +6,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import com.lessard.codesamples.order.domain.SalesOrder;
-import com.lessard.codesamples.order.services.SalesOrderService;
+import com.lessard.codesamples.order.services.SalesOrderServiceImpl;
 
 import org.slf4j.LoggerFactory;
 import org.slf4j.Logger;
@@ -20,21 +20,21 @@ public class SalesOrderController {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(SalesOrderController.class);
 
-    private SalesOrderService salesOrderService;
+    private SalesOrderServiceImpl salesOrderService;
 
     public SalesOrderController() {
     }
 
     @Autowired
-    public SalesOrderController(SalesOrderService salesOrderService) {
+    public SalesOrderController(SalesOrderServiceImpl salesOrderService) {
         this.salesOrderService = salesOrderService;
     }
 
-    public SalesOrderService getSalesOrderService() {
+    public SalesOrderServiceImpl getSalesOrderService() {
         return salesOrderService;
     }
 
-    public void setSalesOrderService(SalesOrderService salesOrderService) {
+    public void setSalesOrderService(SalesOrderServiceImpl salesOrderService) {
         this.salesOrderService = salesOrderService;
     }
 

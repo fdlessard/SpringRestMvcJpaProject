@@ -60,6 +60,7 @@ public class JpaTestConfiguration extends WebMvcConfigurerAdapter {
         jpaProperties.put("eclipselink.ddl-generation", "drop-and-create-tables");
 
         EclipseLinkJpaVendorAdapter jpaVendorAdapter = new EclipseLinkJpaVendorAdapter();
+        jpaVendorAdapter.setDatabasePlatform("org.eclipse.persistence.platform.database.H2Platform");
         jpaVendorAdapter.setShowSql(true);
 
         LocalContainerEntityManagerFactoryBean  entityManagerFactoryBean = new LocalContainerEntityManagerFactoryBean ();

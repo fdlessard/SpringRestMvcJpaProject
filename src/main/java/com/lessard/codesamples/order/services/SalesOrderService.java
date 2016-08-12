@@ -1,58 +1,19 @@
 package com.lessard.codesamples.order.services;
 
 import com.lessard.codesamples.order.domain.SalesOrder;
-import com.lessard.codesamples.order.repositories.SalesOrderRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-
 
 /**
- * Created by fdlessard on 16-07-29.
+ * Created by fdlessard on 16-08-12.
  */
-@Component
-public class SalesOrderService {
+public interface SalesOrderService {
 
-    private SalesOrderRepository salesOrderRepository;
+    void createSalesOrder(SalesOrder salesOrder);
 
+    SalesOrder getSalesOrder(Long id);
 
-    public SalesOrderService() {
-    }
+    Iterable<SalesOrder> getAllSalesOrder();
 
-    @Autowired
-    public SalesOrderService(SalesOrderRepository salesOrderRepository) {
-        this.salesOrderRepository = salesOrderRepository;
-    }
+    void delete(Long id);
 
-    public void createSalesOrder(SalesOrder salesOrder) {
-
-        salesOrderRepository.save(salesOrder);
-    }
-
-    public SalesOrder getSalesOrder(Long id) {
-
-        SalesOrder salesOrder = salesOrderRepository.findByPrimaryKey(id);
-
-        return salesOrder;
-    }
-
-    public Iterable<SalesOrder> getAllSalesOrder() {
-
-        Iterable<SalesOrder> salesOrders = salesOrderRepository.findAll();
-
-        return salesOrders;
-    }
-
-
-    public void delete(Long id) {
-
-        salesOrderRepository.delete(id);
-
-    }
-
-    public void updateSalesOrder(SalesOrder salesOrder) {
-
-        salesOrderRepository.update(salesOrder);
-
-    }
-
+    void updateSalesOrder(SalesOrder salesOrder);
 }

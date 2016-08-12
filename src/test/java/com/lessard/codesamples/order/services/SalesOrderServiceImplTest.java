@@ -22,7 +22,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * Created by fdlessard on 16-07-29.
  */
 @RunWith(MockitoJUnitRunner.class)
-public class SalesOrderServiceTest {
+public class SalesOrderServiceImplTest {
 
     @Mock
     private SalesOrderRepository salesOrderRepository;
@@ -30,14 +30,14 @@ public class SalesOrderServiceTest {
     private Date today = Calendar.getInstance().getTime();
 
 
-    private SalesOrderService salesOrderService;
+    private SalesOrderServiceImpl salesOrderService;
 
     @Before
     public void setup() {
 
         MockitoAnnotations.initMocks(this);
 
-        salesOrderService = new SalesOrderService(salesOrderRepository);
+        salesOrderService = new SalesOrderServiceImpl(salesOrderRepository);
 
         Mockito.when(salesOrderRepository.findByPrimaryKey(0l)).
                 thenReturn(new SalesOrder(0l, 0l, "SalesOrder 0", today, new BigDecimal(10.00)));
@@ -57,7 +57,7 @@ public class SalesOrderServiceTest {
 
         SalesOrder salesOrder = salesOrderService.getSalesOrder(0l);
         Assert.assertNotNull(salesOrder);
-        Assert.assertEquals(salesOrder.getId(), new Long(0));
+        Assert.assertEquals(salesOrder.getId(), Long.valueOf(0));
         Assert.assertEquals(salesOrder.getDescription(), "SalesOrder 0");
         Assert.assertEquals(salesOrder.getDate(), today);
         Assert.assertEquals(salesOrder.getTotal(), new BigDecimal(10.00));
@@ -77,8 +77,8 @@ public class SalesOrderServiceTest {
     @Test
     public void testDeleteSalesOrder() throws Exception {
 
-        salesOrderService.delete(new Long(0));
-        verify(salesOrderRepository).delete(new Long(0));
+        salesOrderService.delete(Long.valueOf(0));
+        verify(salesOrderRepository).delete(Long.valueOf(0));
     }
 
     @Test

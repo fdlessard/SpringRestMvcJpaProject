@@ -1,16 +1,33 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.lessard.codesamples</groupId>
     <artifactId>RestSpringMvcJpaApp</artifactId>
+    <name>RestSpringMvcJpaApp</name>
+    <description></description>
     <packaging>war</packaging>
     <version>0.0.1-SNAPSHOT</version>
-    <name>RestSpringMvcJpaApp</name>
     <url>http://maven.apache.org</url>
+    <developers>
+        <developer>
+            <name>François-David Lessard</name>
+            <email>fdlessard@gmail.com</email>
+        </developer>
+    </developers>
+    <inceptionYear>2016</inceptionYear>
+    <licenses>
+        <license>
+            <name>The MIT License (MIT)</name>
+            <url>https://opensource.org/licenses/MIT</url>
+        </license>
+    </licenses>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+
+        <!-- Java libraries versions  -->
         <java.version>1.8</java.version>
         <javax.servlet-api.version>3.1.0</javax.servlet-api.version>
         <junit.version>4.12</junit.version>
@@ -27,19 +44,23 @@
         <eclipselink.version>2.6.3</eclipselink.version>
         <log4j.version>2.6.2</log4j.version>
         <slf4j.version>1.7.21</slf4j.version>
+
+        <!-- Maven plugins versions  -->
         <maven-compiler-plugin.version>3.5.1</maven-compiler-plugin.version>
+        <findbugs-maven-plugin.version>3.0.4</findbugs-maven-plugin.version>
+        <maven-pmd-plugin.version>3.5</maven-pmd-plugin.version>
         <maven-surefire-plugin.version>2.19.1</maven-surefire-plugin.version>
         <maven-resources-plugin.version>3.0.1</maven-resources-plugin.version>
         <build-helper-maven-plugin.version>1.12</build-helper-maven-plugin.version>
         <maven-war-plugin.version>2.6</maven-war-plugin.version>
         <tomcat7-maven-plugin>2.2</tomcat7-maven-plugin>
         <jetty-plugin.version>9.3.0.v20150612</jetty-plugin.version>
+
     </properties>
 
 
     <dependencies>
 
-        <!-- Servlet related dependencies -->
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
@@ -210,6 +231,35 @@
                     <target>${java.version}</target>
                     <encoding>UTF-8</encoding>
                 </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>findbugs-maven-plugin</artifactId>
+                <version>${findbugs-maven-plugin.version}</version>
+                <executions>
+                    <execution>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>findbugs</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-pmd-plugin</artifactId>
+                <version> ${maven-pmd-plugin.version} </version>
+                <executions>
+                    <execution>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>pmd</goal>
+                            <goal>cpd</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
 
             <plugin>

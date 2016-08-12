@@ -30,24 +30,24 @@ public class AopLogger {
 
         stopWatch.stop();
 
-        StringBuffer logMessageStringBuffer = new StringBuffer();
-        logMessageStringBuffer.append(joinPoint.getTarget().getClass().getSimpleName());
-        logMessageStringBuffer.append(".");
-        logMessageStringBuffer.append(joinPoint.getSignature().getName());
-        logMessageStringBuffer.append("(");
+        StringBuffer logMessage = new StringBuffer();
+        logMessage.append(joinPoint.getTarget().getClass().getSimpleName());
+        logMessage.append(".");
+        logMessage.append(joinPoint.getSignature().getName());
+        logMessage.append("(");
 
         Object[] signatureArgs = joinPoint.getArgs();
 
         String argListStr = StringUtils.join(signatureArgs, ", ");
 
-        logMessageStringBuffer.append(argListStr);
-        logMessageStringBuffer.append(") - ");
+        logMessage.append(argListStr);
+        logMessage.append(") - ");
 
-        logMessageStringBuffer.append("Execution time: ");
-        logMessageStringBuffer.append(stopWatch.getTotalTimeMillis());
-        logMessageStringBuffer.append(" ms");
+        logMessage.append("Execution time: ");
+        logMessage.append(stopWatch.getTotalTimeMillis());
+        logMessage.append(" ms");
 
-        LOGGER.info(logMessageStringBuffer.toString());
+        LOGGER.info(logMessage.toString());
 
         return retVal;
     }

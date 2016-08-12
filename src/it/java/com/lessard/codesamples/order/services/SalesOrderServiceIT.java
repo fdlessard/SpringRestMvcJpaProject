@@ -3,7 +3,6 @@ package com.lessard.codesamples.order.services;
 
 import com.lessard.codesamples.order.JpaTestConfiguration;
 import com.lessard.codesamples.order.domain.SalesOrder;
-import com.lessard.codesamples.order.services.SalesOrderService;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -11,10 +10,8 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -28,7 +25,7 @@ import java.util.List;
 public class SalesOrderServiceIT {
 
     @Autowired
-    private SalesOrderService salesOrderService;
+    private SalesOrderServiceImpl salesOrderService;
 
     @Before
     public void setup() {
@@ -52,8 +49,8 @@ public class SalesOrderServiceIT {
         SalesOrder salesOrder = salesOrderService.getSalesOrder(100l);
 
         Assert.assertNotNull(salesOrder);
-        Assert.assertEquals(new Long(100),  salesOrder.getId());
-        Assert.assertEquals(new Long(1),  salesOrder.getVersion());
+        Assert.assertEquals(Long.valueOf(100),  salesOrder.getId());
+        Assert.assertEquals(Long.valueOf(1),  salesOrder.getVersion());
         Assert.assertEquals("SalesOrder 0",  salesOrder.getDescription());
         //Assert. "2016-08-01 12:00:00",  salesOrder.getDate());
         Assert.assertEquals(new BigDecimal(10.00),  salesOrder.getTotal());
