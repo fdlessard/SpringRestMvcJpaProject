@@ -15,7 +15,7 @@
        http://www.springframework.org/schema/aop
        http://www.springframework.org/schema/aop/spring-aop.xsd">
 
-    <context:component-scan base-package="com.lessard.codesamples.order"/>
+    <context:component-scan base-package="io.fdlessard.codebites.order"/>
 
     <mvc:annotation-driven/>
 
